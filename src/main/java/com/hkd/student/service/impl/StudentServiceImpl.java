@@ -39,4 +39,23 @@ public class StudentServiceImpl implements StudentService {
         Long total = studentMapper.selectCount(dto);
         return ResultDTO.buildSuccess(dtos,total);
     }
+
+    @Override
+    public StudentDTO selectOne(StudentDO studentDO) {
+        StudentDO Do = studentMapper.selectOne(studentDO);
+        StudentDTO studentDTO = studentConvert.do2dto(Do);
+        return studentDTO;
+    }
+
+    @Override
+    public ResultDTO<String> updateStudent(StudentDTO studentDTO) {
+        StudentDO studentDO = studentConvert.dto2do(studentDTO);
+        int res = studentMapper.updateStudent(studentDO);
+        if (res == 1){
+            return ResultDTO.buildSuccess("修改学生成功");
+        }else {
+            return ResultDTO.buildFailure("修改学生失败");
+        }
+        //return null;
+    }
 }

@@ -10,4 +10,8 @@ public interface StudentService {
     ResultDTO<String> addStudent(StudentDTO studentDTO);
 
     ResultDTO<List<StudentDTO>> listStudentByPage(StudentDTO dto);
+
+    StudentDTO selectOne(StudentDO studentDO);
+
+    ResultDTO<String> updateStudent(StudentDTO studentDTO);
 }

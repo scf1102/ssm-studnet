@@ -5,6 +5,7 @@ import com.hkd.student.bean.entity.StudentDO;
 import com.hkd.student.bean.res.ResultDTO;
 import com.hkd.student.bean.res.TableDTO;
 import com.hkd.student.handler.groups.Add;
+import com.hkd.student.handler.groups.Update;
 import com.hkd.student.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,8 +82,29 @@ public class StudentManageHandler {
 
     //修改学生页信息
     @GetMapping("/updateStudent")
-    public String updateStudent(@RequestParam("id") Long id
+    public String updateStudent(@RequestParam(value = "id",required = true) Long id
             , @RequestParam("pageNow") Integer pageNow, Model model){
+
+        if (id != null){
+            StudentDO studentDO = new StudentDO();
+            studentDO.setId(id);
+            StudentDTO dto=studentService.selectOne(studentDO);
+            model.addAttribute("updateStudent",dto);
+        }
+        if (pageNow == null){
+            pageNow = 1;
+        }
+        model.addAttribute("pageNow",pageNow);
         return "admin/student/update";
+    }
+    //修改学生信息
+    @PostMapping("/updateStudent")
+    @ResponseBody
+    public ResultDTO<String> updateStudent(@Validated(Update.class) StudentDTO studentDTO){
+        try {
+            return studentService.updateStudent(studentDTO);
+        }catch (Exception e){
+            throw new RuntimeException("修改学生信息异常");
+        }
     }
 }

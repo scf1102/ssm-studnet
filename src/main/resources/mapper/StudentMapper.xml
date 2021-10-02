@@ -27,4 +27,37 @@
         select count(*) from student
         <include refid="whereComm"/>
     </select>
+
+    <select id="selectOne" resultType="studentDO">
+    select * from student
+    <where>
+        <if test='id != null'>
+            id = #{id}
+        </if>
+        <if test='no != null and no != "" '>
+            no = #{no}
+        </if>
+        <if test='phone != null and phone != "" '>
+            phone = #{phone}
+        </if>
+        <if test='email != null and email != "" '>
+            email = #{email}
+        </if>
+    </where>
+    </select>
+
+    <update id="updateStudent">
+      update student
+      <set>
+          no = #{no},
+          real_name = #{realName},
+          birth_day = #{birthDay},
+          phone = #{phone},
+          email = #{email},
+          <if test='photoPath != null and photoPath != "" '>
+              photo_path = #{photoPath}
+          </if>
+      </set>
+        where id=#{id}
+    </update>
 </mapper>

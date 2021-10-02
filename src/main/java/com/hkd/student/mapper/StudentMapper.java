@@ -12,4 +12,8 @@ public interface StudentMapper {
   List<StudentDO> listStudentByPage(StudentDO dto);
 
   Long selectCount(StudentDO dto);
+
+  StudentDO selectOne(StudentDO studentDO);
+
+  int updateStudent(StudentDO studentDO);
 }

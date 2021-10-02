@@ -5,10 +5,11 @@ import com.hkd.student.handler.groups.Update;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class StudentDO {
-    @NotBlank(groups = {Update.class})
+    @NotNull(groups = {Update.class})
     private Long id;
     @NotBlank(groups = {Add.class, Update.class})
     private String no;

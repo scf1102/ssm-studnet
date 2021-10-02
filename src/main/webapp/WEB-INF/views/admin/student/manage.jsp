@@ -96,7 +96,7 @@
             '                        <td>'+oneStudent["phone"]+'</td>\n' +
             '                        <td>'+oneStudent["email"]+'</td>\n' +
             '                        <td class="text-center">\n' +
-            '                            <img class="photo-size" src="'+oneStudent["photoPath"]+'"/>\n' +
+            '                            <img class="photo-size" src="'+oneStudent["addressPhotoPath"]+'"/>\n' +
             '                        </td>\n' +
             '                        <td>\n' +
             '                            <a href="<%=request.getContextPath()%>/admin/updateStudent?id='+oneStudent["id"]+ '&pageNow='+ $("#pageNow").val()+' ">更新</a>\n' +
