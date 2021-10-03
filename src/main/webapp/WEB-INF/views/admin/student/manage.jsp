@@ -18,9 +18,9 @@
                     <a href="<%=request.getContextPath()%>/admin/toStudentAdd" class="btn btn-primary mr-3">
                         新增
                     </a>
-                    <a href="" class="btn btn-primary mr-3">
+                    <button href="" class="btn btn-primary mr-3" onclick="doDelete()">
                         删除
-                    </a>
+                    </button>
                     <form class="form-inline mb-0" id="searchForm">
                         <input type="text" class="form-control" name="realName" placeholder="请输入用户名">
                         <input type="hidden"  name="pageNow" id="pageNow" value="<%=request.getAttribute("pageNow")%>">
@@ -152,6 +152,36 @@
             $("#pageNow").val(pageCount);
             loadPageTable();
         }
+        //删除
+        function doDelete(){
+            var checkedInputs=$("input[name=idsToDelete]:checked");
+            if (!checkedInputs  || checkedInputs.length == 0){
+                $("#tipCont").text("请选择要删除的行");
+                $("#tipModal").modal("show");
+                return ;
+            }
+            //获取到要删除的ID
+            var idsToDelete=[];
+            $.each(checkedInputs,function (i, ele) {
+                idsToDelete.push($(ele).val());
+            });
+            //发送ajax请求
+            $.ajax({
+                type:"post",
+                url:'<%=request.getContextPath()%>/admin/deleteStudentByIds',
+                contentType:"application/json",
+                data:JSON.stringify({"idsToDelete":idsToDelete}),
+                success:function (res) {
+                    if (res.success){
+                        location.href='<%=request.getContextPath()%>/admin/toStudentManage';
+                    }else{
+                        $("#tipCont").text(res.errMsg);
+                        $("#tipModal").modal("show");
+                    }
+                }
+            })
+        }
+
         //执行
         loadPageTable();
     </script>

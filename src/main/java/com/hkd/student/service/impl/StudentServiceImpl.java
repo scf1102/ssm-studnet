@@ -58,4 +58,10 @@ public class StudentServiceImpl implements StudentService {
         }
         //return null;
     }
+
+    @Override
+    public ResultDTO<String> deleteStudent(List<Long> idsToDelete) {
+        studentMapper.deleteStudent(idsToDelete);
+        return ResultDTO.buildSuccess("删除学生信息成功");
+    }
 }

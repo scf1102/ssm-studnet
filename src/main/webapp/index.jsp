@@ -6,6 +6,6 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:forward page="/admin/toStudentManage"/>
+<jsp:forward page="/toLogin"/>
 </body>
 </html>

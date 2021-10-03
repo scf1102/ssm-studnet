@@ -107,4 +107,22 @@ public class StudentManageHandler {
             throw new RuntimeException("修改学生信息异常");
         }
     }
+
+    //删除学生
+    @PostMapping("/deleteStudentByIds")
+    @ResponseBody
+    public ResultDTO<String> deleteStudentByIds(@RequestBody StudentDTO studentDTO) {
+        List<Long> idsToDelete = studentDTO.getIdsToDelete();
+        if (idsToDelete == null || idsToDelete.isEmpty()) {
+            return ResultDTO.buildFailure("学生ID为空");
+        }
+        try {
+          return   studentService.deleteStudent(idsToDelete);
+        } catch (Exception e) {
+
+            throw new RuntimeException("删除学生信息失败");
+        }
+
+    }
+
 }

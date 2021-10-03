@@ -16,4 +16,6 @@ public interface StudentMapper {
   StudentDO selectOne(StudentDO studentDO);
 
   int updateStudent(StudentDO studentDO);
+
+    void deleteStudent(List<Long> idsToDelete);
 }

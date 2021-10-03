@@ -14,4 +14,6 @@ public interface StudentService {
     StudentDTO selectOne(StudentDO studentDO);
 
     ResultDTO<String> updateStudent(StudentDTO studentDTO);
+
+    ResultDTO<String> deleteStudent(List<Long> idsToDelete);
 }

@@ -60,4 +60,12 @@
       </set>
         where id=#{id}
     </update>
+
+    <!--删除学生-->
+    <delete id="deleteStudent">
+        delete from student where id in
+        <foreach collection="list" item="oneId" separator="," open="(" close=")">
+            #{oneId}
+        </foreach>
+    </delete>
 </mapper>

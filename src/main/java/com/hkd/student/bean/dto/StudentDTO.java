@@ -2,7 +2,10 @@ package com.hkd.student.bean.dto;
 
 import com.hkd.student.bean.entity.StudentDO;
 import com.hkd.student.constans.Constans;
+import jdk.internal.dynalink.linker.LinkerServices;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class StudentDTO extends StudentDO {
@@ -15,6 +18,15 @@ public class StudentDTO extends StudentDO {
     //图片可访问的路径
     private String addressPhotoPath;
 
+    private List<Long> idsToDelete;
+
+    public List<Long> getIdsToDelete() {
+        return idsToDelete;
+    }
+
+    public void setIdsToDelete(List<Long> idsToDelete) {
+        this.idsToDelete = idsToDelete;
+    }
 
     public Integer getStart(){
         if (getPageNow() == null){
