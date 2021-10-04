@@ -28,7 +28,7 @@
         <include refid="whereComm"/>
     </select>
 
-    <select id="selectOne" resultType="studentDO">
+    <select id="selectOne" resultType="studentDO" >
     select * from student
     <where>
         <if test='id != null'>

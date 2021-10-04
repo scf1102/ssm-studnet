@@ -18,7 +18,7 @@ public enum LoginTypeEnum {
             return null;
         }
         for(LoginTypeEnum e : values()){
-            if (e.equals(loginType)){
+            if (e.type.equals(loginType)){
                 return e;
             }
         }

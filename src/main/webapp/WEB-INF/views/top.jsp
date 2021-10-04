@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/gijgo/css/gijgo.css">
@@ -19,7 +20,9 @@
         </div>
         <div class="col-sm-2 d-flex justify-content-center align-items-center"
              style="background-color: #0062cc;">
-            <a href="#" class="btn btn-outline-warning border-0">退出</a>
+            <c:if test="${sessionScope.admin != null || sessionScope.student != null}">
+                <a href="<%=request.getContextPath()%>/loginOut" class="btn btn-outline-warning border-0">退出</a>
+            </c:if>
         </div>
         <%--提示框--%>
         <div class="modal fade"  data-backdrop="static"  tabindex="-1" id="tipModal">

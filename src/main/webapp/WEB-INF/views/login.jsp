@@ -14,7 +14,7 @@
         <jsp:include page="top.jsp"/>
         <div class="row">
             <section class="col-sm-4 offset-sm-4">
-                <form>
+                <form id="loginForm">
                     <div class="form-group">
                         <label>用户名：</label>
                         <input type="text" name="loginName" class="form-control">
@@ -22,7 +22,7 @@
 
                     <div class="form-group">
                         <label>密码：</label>
-                        <input type="text" name="secretCode" class="form-control">
+                        <input type="password" name="secretCode" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -70,13 +70,20 @@
             $.ajax({
                 type:"post",
                 url:'<%=request.getContextPath()%>/login',
-                data:JSON.stringify(formDataObj("form")),
+                data:JSON.stringify(formDataObj("#loginForm")),
                 contentType:"application/json",
                 success:function (res) {
-                    //判断是学生还是管理员登录
-                    var loginChecked=$(":radio:checked").val();
-                    if ("admin" == loginChecked){
-                        location.href='<%=request.getContextPath()%>/admin/toStudentManage';
+                    if (res.success){
+                        //判断是学生还是管理员登录
+                        var loginChecked=$(":radio:checked").val();
+                        if ("admin" == loginChecked){
+                            location.href='<%=request.getContextPath()%>/admin/toStudentManage';
+                        }else{
+                            alert(res.data);
+                        }
+                    }else {
+                        $("#tipCont").text(res.errMsg);
+                        $("#tipModal").modal("show");
                     }
                 }
             })
