@@ -69,7 +69,7 @@
         $("#loginBtn").click(function () {
             $.ajax({
                 type:"post",
-                url:'<%=request.getContextPath()%>/login',
+                url:'<%=request.getContextPath()%>/login2',
                 data:JSON.stringify(formDataObj("#loginForm")),
                 contentType:"application/json",
                 success:function (res) {
@@ -79,7 +79,7 @@
                         if ("admin" == loginChecked){
                             location.href='<%=request.getContextPath()%>/admin/toStudentManage';
                         }else{
-                            alert(res.data);
+                            location.href='<%=request.getContextPath()%>/student/toUpdate';
                         }
                     }else {
                         $("#tipCont").text(res.errMsg);

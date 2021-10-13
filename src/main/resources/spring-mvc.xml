@@ -27,4 +27,24 @@
     </bean>
     <!--文件上传-->
     <!--拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--配置要拦截的路径-->
+            <mvc:mapping path="/admin/**"/>
+            <!--排除要拦截的路径-->
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/login2"/>
+            <mvc:exclude-mapping path="/toLogin"/>
+            <bean class="com.hkd.student.interceptor.AdminInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <!--配置要拦截的路径-->
+            <mvc:mapping path="/student/**"/>
+            <!--排除要拦截的路径-->
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/login2"/>
+            <mvc:exclude-mapping path="/toLogin"/>
+            <bean class="com.hkd.student.interceptor.StudentInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

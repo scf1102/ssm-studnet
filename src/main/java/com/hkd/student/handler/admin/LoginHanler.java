@@ -6,6 +6,7 @@ import com.hkd.student.bean.entity.AdminDo;
 import com.hkd.student.bean.entity.StudentDO;
 import com.hkd.student.bean.res.ResultDTO;
 import com.hkd.student.enums.LoginTypeEnum;
+import com.hkd.student.login.ctx.LoginCtx;
 import com.hkd.student.service.AdminService;
 import com.hkd.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class LoginHanler {
     private StudentService studentService;
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private LoginCtx loginCtx;
 
     //跳转到登录界面
     @GetMapping("/toLogin")
@@ -122,5 +125,14 @@ public class LoginHanler {
             return ResultDTO.buildSuccess(String.valueOf(dto.getId()));
         }
         //return ResultDTO.buildSuccess("ok");
+    }
+    /*
+    * 执行登录：可扩展
+    * */
+    @PostMapping("/login2")
+    @ResponseBody
+    public ResultDTO<String> login2(@RequestBody LoginReq loginReq, HttpSession session){
+
+        return loginCtx.login(loginReq,session);
     }
 }
