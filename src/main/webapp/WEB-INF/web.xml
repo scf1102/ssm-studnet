@@ -33,6 +33,18 @@
             <param-value>classpath:spring-mvc.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <multipart-config>
+            <!--临时文件目录-->
+            <location>D:/temp</location>
+            <!--单位B,2M:单个文件最大为2M-->
+            <max-file-size>2097152</max-file-size>
+            <!--单位B,4M:一个请求中上传的所有文件最大为4M-->
+            <max-request-size>4194304</max-request-size>
+            <!--当上传文件的大小(非占用大小)大于此处配置时就会在location指定的位置生成文件(防止堆内存溢出)
+                 比如0，表示上传任何大小的文件都会存储在临时文件
+            -->
+            <file-size-threshold>142626</file-size-threshold>
+        </multipart-config>
     </servlet>
     <servlet-mapping>
         <servlet-name>DispatcherServlet</servlet-name>

@@ -26,6 +26,9 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <!--文件上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+        <property name="resolveLazily" value="true"></property>
+    </bean>
     <!--拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>

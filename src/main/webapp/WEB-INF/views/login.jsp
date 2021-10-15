@@ -79,7 +79,7 @@
                         if ("admin" == loginChecked){
                             location.href='<%=request.getContextPath()%>/admin/toStudentManage';
                         }else{
-                            location.href='<%=request.getContextPath()%>/student/toUpdate';
+                            location.href='<%=request.getContextPath()%>/student/toUpdate?id='+res.data;
                         }
                     }else {
                         $("#tipCont").text(res.errMsg);
